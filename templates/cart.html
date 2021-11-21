@@ -18,15 +18,16 @@
             <tr>
                 <td>{{ melon.common_name }}</td>
                 <td>{{ melon.quantity }}</td>
-                <td>${{ melon.price }}</td>
-                <td>${{ melon.total_price }}</td>
+                <td>${{ '%0.2f'|format(melon.price|float) }}</td>
+                <td>${{ '%0.2f'|format(melon.total_price|float) }}</td>
             </tr>
             {% endfor %}
         
         </tbody>
     </table>
 
-    <h3>Total: ${{ total }}</h3>
+    <h3>Total: ${{ '%0.2f'|format(total|float) }}</h3>
+
 
     <a href="/checkout" class="btn btn-large btn-primary">Check Out</a>
 
