@@ -123,9 +123,22 @@ def process_login():
     dictionary, look up the user, and store them in the session.
     """
 
-    # TODO: Need to implement this!
+    email = request.form.get("email")
+    password = request.form.get("password")
 
-    # The logic here should be something like:
+    customer = get_by_email(email)
+
+    if customer == None:
+        flash("You don't exist")
+        return redirect("/login")
+    elif customer.password != password:
+        flash("Wrong password")
+        return redirect("/login")
+    elif customer.password == password:
+        flash("Successful login")
+        return redirect("/melons")
+    
+
     #
     # - get user-provided name and password from request.form
     # - use customers.get_by_email() to retrieve corresponding Customer
@@ -137,7 +150,7 @@ def process_login():
     # - if they don't, flash a failure message and redirect back to "/login"
     # - do the same if a Customer with that email doesn't exist
 
-    return "Oops! This needs to be implemented"
+    # return "Oops! This needs to be implemented"
 
 
 @app.route("/checkout")
